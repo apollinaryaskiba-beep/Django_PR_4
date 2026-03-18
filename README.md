@@ -1,34 +1,27 @@
-# Практическая работа №3: бэкенд-разработка на Python и Django
+# Практическая работа №4: бэкенд-разработка на Python и Django
 
-## 🛠 Проверка ORM (Задание 3)
+## Описание проекта
+Данный проект представляет собой веб-приложение на Django с реализованной системой аутентификации пользователей и настроенным процессом непрерывной интеграции (CI) через GitHub Actions.
+Проект создан на основе практической работы №3: бэкенд-разработка на Python и Django.
 
-Для тестирования CRUD-операций в Django Shell были выполнены следующие команды:
+## Реализованный функционал
+1. **Аутентификация (Задача 1):**
+   - Регистрация пользователей через `CreateView` и `UserCreationForm`.
+   - Вход и выход из системы с использованием встроенных `LoginView` и `LogoutView`.
+   - Защита страниц с помощью декоратора `@login_required` (доступ к странице `/protected/` только для авторизованных пользователей).
+   - Использование классовых представлений.
 
-### 1. Создание задач
-```python
-from todo.models import Task
-Task.objects.create(title="Задача 1", description="Описание 1")
-Task.objects.create(title="Задача 2", description="Описание 2")
-Task.objects.create(title="Задача 3", description="Описание 3")
-```
+2. **Автоматизация CI (Задача 2):**
+   - Настроен GitHub Actions Workflow (`ci.yml`).
+   - Автоматическая проверка синтаксиса и стиля кода с помощью **flake8**.
+   - Автоматический запуск юнит-тестов через **pytest** при каждом push и pull request.
+   - Среда выполнения: **Python 3.12** (совместимость с Django 6.0).
 
-### 2. Получение списка всех задач
-```python
-tasks = Task.objects.all()
-for t in tasks:
-    print(f"{t.id}: {t.title} — {t.completed}")
-```
+## Запуск проекта локально
 
-### 3. Обновление статуса
-```python
-task = Task.objects.get(title="Задача 1")
-task.completed = True
-task.save()
-print(f"Задача '{task.title}' выполнена: {task.completed}")
-```
-
-### 4. Удаление задачи
-```python
-task_to_del = Task.objects.get(title="Задача 3")
-task_to_del.delete()
-```
+1. Клонируйте репозиторий:
+   ```bash
+   git clone https://github.com/apollinaryaskiba-beep/Django_PR_4
+2. Установите зависимости: `pip install -r requirements.txt`
+3. Примените миграции: `python manage.py migrate`
+4. Запустите сервер: `python manage.py runserver`
