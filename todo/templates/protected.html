@@ -1,0 +1,6 @@
+<h2>Защищенная страница</h2>
+<p>Привет, {{ user.username }}! Вы успешно авторизованы.</p>
+<form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Выйти из системы</button>
+</form>
